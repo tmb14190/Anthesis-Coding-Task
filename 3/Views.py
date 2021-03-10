@@ -7,7 +7,7 @@ from django.shortcuts import render, get_object_or_404
 from Models import Farm
 
 # url pattern would be
-# path('<string:name>/', views.farn, name='farm')
+# path('<string:name>/', views.farm, name='farm')
 
 def farm(request, id):
     farm = get_object_or_404(Farm, id=id)
