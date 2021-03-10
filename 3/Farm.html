@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en-GB">
+    <head>
+        <title> {% block head %} {{ farm.name }} {% endblock %} </title>
+    </head>
+    <body>
+    {% if farm %}
+        <div class = "content">
+            <div class = "farm_name">
+                <h1> {{ farm.name }} </h1>
+            </div>
+            {% for field in fields %}
+                <span class="field_table_row">
+                    <div class="name"> {{ field.name }} </div>
+                    <div class="size"> {{ field.size }} Acres </div>
+                    <div class="product"> {{ field.product }} </div>
+                    <div class="last_rested"> {{ field.last_rested }} </div>
+                </span>
+            {% endfor %}
+        </div>
+    {% endif %}
+    </body>
+</html>

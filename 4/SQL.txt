@@ -1,0 +1,12 @@
+# Built to be used for a MySQL database
+# Assuming farm is the database
+# This creates a temp database, we do not insert any rows which have duplicates on 
+# the combined fields of user, site, customer, and supplier, by using the UNIQUE constraint
+# then when adding it to the temp database use INSERT IGNORE to ignore errors caused by duplicates
+# then we rename the temporary database to be our new database, and drop the old one
+
+CREATE TABLE temp LIKE farm;
+ALTER TABLE temp ADD UNIQUE(user, site, customer, supplier);
+INSERT IGNORE INTO temp SELECT * FROM farm;
+RENAME TABLE farm TO old_farm, temp TO farm;
+DROP TABLE old_farm;
